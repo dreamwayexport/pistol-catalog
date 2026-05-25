@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PISTOL — 汽车音响产品报价册（人民币）</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --dark: #111214;
+    --card: #16181c;
+    --border: #2a2d33;
+    --red: #e8222a;
+    --red-dim: #9e161b;
+    --white: #f0f0ef;
+    --gray: #6b7280;
+    --light: #d1d5db;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ========= HEADER ========= */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 64px;
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 4px;
+    color: var(--white);
+    cursor: pointer;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .logo span { color: var(--red); }
+
+  .header-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gray);
+    text-transform: uppercase;
+  }
+
+  .back-btn {
+    display: none;
+    align-items: center; gap: 8px;
+    background: none; border: 1px solid var(--border);
+    color: var(--light); font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 8px 18px; cursor: pointer;
+    transition: all .2s;
+  }
+  .back-btn:hover { border-color: var(--red); color: var(--red); }
+  .back-btn svg { width: 14px; height: 14px; }
+
+  /* ========= INDEX PAGE ========= */
+  #index-page { padding-top: 64px; }
+
+  .hero-wrap {
+    background: var(--dark);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero {
+    position: relative;
+    padding: 64px 40px 56px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 48px;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  .hero::before {
+    content: 'PISTOL';
+    position: absolute; left: 35%; top: 50%; transform: translate(-50%,-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(100px, 13vw, 190px);
+    color: rgba(232,34,42,0.035);
+    letter-spacing: 10px; line-height: 1;
+    pointer-events: none; user-select: none;
+  }
+  .hero-left { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px; letter-spacing: 4px; color: var(--red);
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(44px, 5.5vw, 80px);
+    letter-spacing: 2px; line-height: 1;
+    color: var(--white);
+  }
+  .hero p {
+    font-size: 14px; color: var(--gray); margin-top: 14px;
+    font-weight: 300; max-width: 420px; line-height: 1.6;
+  }
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 36px; flex-wrap: wrap;
+  }
+  .stat { border-left: 2px solid var(--red); padding-left: 16px; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px; color: var(--white); line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px; letter-spacing: 2px; color: var(--gray);
+    text-transform: uppercase; font-family: 'Barlow Condensed', sans-serif;
+  }
+  /* Contact card */
+  .hero-contact {
+    position: relative; z-index: 1;
+    border: 1px solid var(--border);
+    background: rgba(22,24,28,0.9);
+    padding: 26px 24px 22px;
+  }
+  .hero-contact-head {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px; letter-spacing: 3px; color: var(--white);
+    margin-bottom: 4px;
+  }
+  .hero-contact-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; letter-spacing: 3px; color: var(--red);
+    text-transform: uppercase; margin-bottom: 18px;
+    padding-bottom: 16px; border-bottom: 1px solid var(--border);
+  }
+  .hc-row {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 9px 0; border-bottom: 1px solid rgba(42,45,51,0.5);
+  }
+  .hc-row:last-of-type { border-bottom: none; }
+  .hc-icon {
+    width: 26px; height: 26px; background: rgba(232,34,42,0.1);
+    border: 1px solid rgba(232,34,42,0.2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 11px; color: var(--red);
+  }
+  .hc-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; letter-spacing: 2px; color: var(--gray);
+    text-transform: uppercase; margin-bottom: 1px;
+  }
+  .hc-val {
+    font-size: 13px; color: var(--white); font-weight: 400;
+    word-break: break-all; line-height: 1.3;
+  }
+  .hc-cert {
+    display: flex; gap: 8px; margin-top: 16px; padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .cert-badge {
+    flex: 1; text-align: center;
+    border: 1px solid var(--border);
+    padding: 6px 4px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px; letter-spacing: 2px; color: var(--gray);
+  }
+
+  /* Filter Bar */
+  .filter-bar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 20px 40px; border-bottom: 1px solid var(--border);
+    overflow-x: auto; flex-wrap: wrap;
+  }
+  .filter-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; letter-spacing: 3px; color: var(--gray);
+    text-transform: uppercase; margin-right: 8px; white-space: nowrap;
+  }
+  .filter-btn {
+    background: none; border: 1px solid var(--border);
+    color: var(--gray); font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+    padding: 6px 16px; cursor: pointer; transition: all .2s; white-space: nowrap;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    border-color: var(--red); color: var(--white); background: rgba(232,34,42,0.08);
+  }
+  .filter-btn.active { color: var(--red); }
+
+  /* Product Grid */
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    padding: 0;
+  }
+
+  .product-card {
+    background: var(--dark);
+    cursor: pointer;
+    transition: all .25s;
+    position: relative;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .product-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    border: 2px solid transparent;
+    transition: border-color .25s; pointer-events: none;
+  }
+  .product-card:hover { background: var(--card); z-index: 1; }
+  .product-card:hover::after { border-color: var(--red); }
+
+  .card-img {
+    width: 100%; aspect-ratio: 4/3;
+    overflow: hidden; background: #0e0f11;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .card-img img {
+    width: 100%; height: 100%; object-fit: contain;
+    transition: transform .4s ease;
+    padding: 16px;
+  }
+  .product-card:hover .card-img img { transform: scale(1.06); }
+
+  .card-body { padding: 20px 24px 24px; flex: 1; display: flex; flex-direction: column; }
+  .card-category {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; letter-spacing: 3px; color: var(--red);
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .card-model {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px; letter-spacing: 1px; color: var(--white);
+    line-height: 1; margin-bottom: 6px;
+  }
+  .card-desc {
+    font-size: 13px; color: var(--gray); font-weight: 300;
+    margin-bottom: 16px; line-height: 1.5; flex: 1;
+  }
+  .card-footer {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    border-top: 1px solid var(--border); padding-top: 14px; margin-top: 8px;
+  }
+  .card-price { }
+  .price-from {
+    font-size: 10px; letter-spacing: 2px; color: var(--gray);
+    text-transform: uppercase; font-family: 'Barlow Condensed', sans-serif;
+  }
+  .price-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px; color: var(--white);
+  }
+  .price-unit { font-size: 11px; color: var(--gray); }
+
+  .card-arrow {
+    width: 36px; height: 36px; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    transition: all .2s; flex-shrink: 0;
+  }
+  .product-card:hover .card-arrow {
+    background: var(--red); border-color: var(--red);
+  }
+  .card-arrow svg { width: 14px; height: 14px; stroke: var(--gray); transition: stroke .2s; }
+  .product-card:hover .card-arrow svg { stroke: white; }
+
+  .card-badge {
+    position: absolute; top: 12px; right: 12px;
+    background: var(--red); color: white;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 3px 10px;
+  }
+
+  /* ========= PRODUCT DETAIL PAGE ========= */
+  #detail-page {
+    display: none; padding-top: 64px;
+  }
+
+  .detail-hero {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 64px);
+  }
+
+  .detail-gallery {
+    background: var(--dark);
+    border-right: 1px solid var(--border);
+    position: sticky; top: 64px;
+    height: calc(100vh - 64px);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+
+  .main-img-wrap {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    background: #0c0d0f;
+    overflow: hidden;
+    min-height: 0;
+  }
+  .main-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    transition: opacity .3s;
+    padding: 32px;
+  }
+
+  .thumb-row {
+    display: flex; gap: 0; border-top: 1px solid var(--border);
+  }
+  .thumb {
+    flex: 1; aspect-ratio: 1; cursor: pointer;
+    overflow: hidden; border-right: 1px solid var(--border);
+    background: #0e0f11;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s; padding: 8px;
+  }
+  .thumb:last-child { border-right: none; }
+  .thumb img { width: 100%; height: 100%; object-fit: contain; opacity: 0.5; transition: opacity .2s; }
+  .thumb.active img, .thumb:hover img { opacity: 1; }
+  .thumb.active { background: #191c21; }
+
+  .detail-info {
+    background: var(--black);
+    padding: 60px 56px;
+    overflow-y: auto;
+  }
+
+  .detail-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; letter-spacing: 4px; color: var(--red);
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .detail-model {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px); letter-spacing: 2px;
+    color: var(--white); line-height: 1; margin-bottom: 8px;
+  }
+  .detail-subtitle {
+    font-size: 15px; color: var(--gray); font-weight: 300;
+    margin-bottom: 40px; line-height: 1.6;
+  }
+
+  /* Pricing block */
+  .pricing-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 28px 32px;
+    margin-bottom: 36px;
+  }
+  .pricing-block h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; letter-spacing: 3px; color: var(--gray);
+    text-transform: uppercase; margin-bottom: 18px;
+  }
+  .price-tiers { display: flex; flex-direction: column; gap: 10px; }
+  .price-tier {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .price-tier:last-child { border-bottom: none; }
+  .tier-qty {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px; letter-spacing: 1px; color: var(--gray);
+  }
+  .tier-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px; color: var(--white); letter-spacing: 1px;
+  }
+  .price-note {
+    font-size: 11px; color: var(--gray); margin-top: 12px;
+    font-family: 'Barlow Condensed', sans-serif; letter-spacing: 1px;
+  }
+
+  /* Specs table */
+  .specs-section { margin-bottom: 36px; }
+  .section-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; letter-spacing: 3px; color: var(--gray);
+    text-transform: uppercase; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-heading::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  .specs-table { width: 100%; border-collapse: collapse; }
+  .specs-table tr { border-bottom: 1px solid var(--border); }
+  .specs-table tr:last-child { border-bottom: none; }
+  .specs-table td {
+    padding: 10px 0; font-size: 14px; vertical-align: top;
+  }
+  .specs-table td:first-child {
+    color: var(--gray); font-weight: 300; width: 45%;
+    font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.5px;
+    font-size: 13px;
+  }
+  .specs-table td:last-child { color: var(--white); font-weight: 500; }
+
+  /* Features */
+  .features-list { list-style: none; }
+  .features-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 8px 0; border-bottom: 1px solid var(--border);
+    font-size: 14px; color: var(--light); font-weight: 300;
+  }
+  .features-list li:last-child { border-bottom: none; }
+  .features-list li::before {
+    content: '';
+    width: 6px; height: 6px; background: var(--red);
+    flex-shrink: 0; margin-top: 5px;
+  }
+
+  /* Terms */
+  .terms-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--border); border: 1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .term-cell {
+    background: var(--card); padding: 14px 18px;
+  }
+  .term-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; letter-spacing: 2px; color: var(--gray);
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  .term-val { font-size: 13px; color: var(--white); font-weight: 400; }
+
+  /* Contact CTA */
+  .contact-cta {
+    border: 1px solid var(--red);
+    padding: 28px 32px;
+    background: rgba(232,34,42,0.04);
+    margin-bottom: 60px;
+  }
+  .contact-cta h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px; letter-spacing: 2px; margin-bottom: 16px;
+  }
+  .contact-items { display: flex; flex-direction: column; gap: 8px; }
+  .contact-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; color: var(--light);
+  }
+  .contact-icon { color: var(--red); font-size: 16px; width: 20px; text-align: center; }
+
+  .alibaba-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 20px;
+    background: var(--red); color: white;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 12px 24px; text-decoration: none;
+    transition: background .2s;
+  }
+  .alibaba-link:hover { background: #c41920; }
+
+  /* Footer */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    padding: 32px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px; letter-spacing: 4px; color: var(--gray);
+  }
+  .footer-note { font-size: 12px; color: var(--gray); }
+
+  /* Responsive */
+  @media (max-width: 1000px) {
+    .hero { grid-template-columns: 1fr; gap: 32px; }
+    .hero-contact { max-width: 480px; }
+  }
+  @media (max-width: 900px) {
+    header { padding: 0 20px; }
+    .hero { padding: 48px 20px 40px; }
+    .filter-bar { padding: 16px 20px; }
+    .catalog-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+    .detail-hero { grid-template-columns: 1fr; }
+    .detail-gallery { position: static; height: auto; min-height: 320px; }
+    .main-img-wrap { min-height: 280px; }
+    .detail-info { padding: 36px 24px; }
+    footer { padding: 24px 20px; }
+    .terms-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .product-card {
+    animation: fadeUp .4s ease both;
+  }
+  .product-card:nth-child(1) { animation-delay: .02s; }
+  .product-card:nth-child(2) { animation-delay: .04s; }
+  .product-card:nth-child(3) { animation-delay: .06s; }
+  .product-card:nth-child(4) { animation-delay: .08s; }
+  .product-card:nth-child(5) { animation-delay: .10s; }
+  .product-card:nth-child(6) { animation-delay: .12s; }
+  .product-card:nth-child(7) { animation-delay: .14s; }
+  .product-card:nth-child(8) { animation-delay: .16s; }
+  .product-card:nth-child(9) { animation-delay: .18s; }
+  .product-card:nth-child(10) { animation-delay: .20s; }
+  .product-card:nth-child(n+11) { animation-delay: .22s; }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo" onclick="showIndex()">
+    <span>●</span> PISTOL
+  </div>
+  <div class="header-sub">Car Audio — 人民币报价册 · CNY</div>
+  <button class="back-btn" id="back-btn" onclick="showIndex()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+    Back to Catalog
+  </button>
+</header>
+
+<!-- INDEX PAGE -->
+<div id="index-page">
+  <div class="hero-wrap">
+    <div class="hero">
+      <div class="hero-left">
+        <div class="hero-eyebrow">Guangzhou Xinming Auto Supplies Co., Ltd.</div>
+        <h1>Product<br>Catalog</h1>
+        <p>Professional car audio equipment — amplifiers, speakers & subwoofers. FOB Guangzhou · CE/RoHS Certified · OEM/ODM Available</p>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">20</div>
+            <div class="stat-label">Products</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Categories</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">2</div>
+            <div class="stat-label">Units MOQ</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-contact">
+        <div class="hero-contact-head">Contact Us</div>
+        <div class="hero-contact-sub">Guangzhou Xinming Auto Supplies</div>
+        <div class="hc-row">
+          <div class="hc-icon">👤</div>
+          <div>
+            <div class="hc-label">Sales Contact</div>
+            <div class="hc-val">Miya Cheng</div>
+          </div>
+        </div>
+        <div class="hc-row">
+          <div class="hc-icon">📞</div>
+          <div>
+            <div class="hc-label">Phone / WhatsApp</div>
+            <div class="hc-val">(+086) 13052579868</div>
+          </div>
+        </div>
+        <div class="hc-row">
+          <div class="hc-icon">💬</div>
+          <div>
+            <div class="hc-label">WeChat</div>
+            <div class="hc-val">momomiyacheng</div>
+          </div>
+        </div>
+        <div class="hc-row">
+          <div class="hc-icon">✉</div>
+          <div>
+            <div class="hc-label">Email</div>
+            <div class="hc-val">miyac@loteintl.cn</div>
+          </div>
+        </div>
+        <div class="hc-cert">
+          <div class="cert-badge">CE</div>
+          <div class="cert-badge">RoHS</div>
+          <div class="cert-badge">OEM/ODM</div>
+          <div class="cert-badge">FOB GZ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" onclick="filterProducts('all', this)">All Products</button>
+    <button class="filter-btn" onclick="filterProducts('speakers', this)">Speakers</button>
+    <button class="filter-btn" onclick="filterProducts('amplifiers', this)">Amplifiers</button>
+    <button class="filter-btn" onclick="filterProducts('subwoofers', this)">Subwoofers</button>
+  </div>
+
+  <div class="catalog-grid" id="catalog-grid"></div>
+
+  <footer>
+    <div class="footer-brand">PISTOL</div>
+    <div class="footer-note">Contact: Miya Cheng &nbsp;·&nbsp; miyac@loteintl.cn &nbsp;·&nbsp; (+086)13052579868</div>
+  </footer>
+</div>
+
+<!-- DETAIL PAGE -->
+<div id="detail-page">
+  <div class="detail-hero">
+    <div class="detail-gallery" id="detail-gallery">
+      <div class="main-img-wrap">
+        <img id="main-img" src="" alt="">
+      </div>
+      <div class="thumb-row" id="thumb-row"></div>
+    </div>
+    <div class="detail-info" id="detail-info"></div>
+  </div>
+</div>
+
+<script>
+const products = [
+  {
+    id: 'TS-A1072E',
+    category: 'speakers',
+    categoryLabel: 'Coaxial Speaker',
+    model: 'TS-A1072E',
+    desc: '4 Inch 3-Way Coaxial · Shallow Mount',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/H05de7c49d3e04f4f8fd92f039445bc97A.jpeg_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/He81ed97bba92404aa95f5f64027c491eb.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/H71714a792f954e4c833f346b4c7b6122i.png_960x960q80.jpg'
+    ],
+    startPrice: '¥37',
+    unit: '/pair',
+    alibaba: 'https://www.alibaba.com/product-detail/PISTOL-TS-A1072E-4-Inch-3_1601772371626.html',
+    specs: {
+      'Size': '4 Inch (10 cm)',
+      'Configuration': '3-Way Coaxial',
+      'Peak Power': '140W',
+      'RMS Power': '20W',
+      'Sensitivity': '92dB',
+      'Impedance': '4Ω',
+      'Frequency Response': '80 – 22,000 Hz',
+      'Cone Material': 'IMPP',
+      'Tweeter Unit': 'PEI Balanced Dome',
+      'Frame Design': 'Shallow Mount',
+      'Operating Voltage': 'DC 12V',
+    },
+    pricing: [
+      { qty: '≥ 2 pairs', price: '¥37' },
+      { qty: '≥ 10 pairs', price: '¥35' },
+      { qty: '≥ 100 pairs', price: '¥33' },
+    ],
+    features: [
+      '3-way coaxial design — multi-driver full frequency coverage',
+      'IMPP cone — accurate, low-distortion mid-bass',
+      'PEI balanced dome tweeter — clear high-frequency extension',
+      'Shallow mount frame — fits depth-restricted installations',
+      '92dB high sensitivity — compatible with factory head units',
+      '100% tested before shipment'
+    ],
+    soldAs: 'pair',
+    pkg: '32.5 × 17 × 7.7 cm · 0.99 kg',
+  },
+  {
+    id: 'TS-A1095S',
+    category: 'speakers',
+    categoryLabel: 'Coaxial Speaker',
+    model: 'TS-A1095S',
+    desc: '4 Inch 2-Way Coaxial · OEM Custom Logo',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/Ae6bcc47d61e64b5899718d2af8042d2bk.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/A6051b93ac1d145e68d05bf58d5177c23x.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/A766623ad4de04a5db75c703a32bef6e5L.png_960x960q80.jpg'
+    ],
+    startPrice: '¥37',
+    unit: '/pair',
+    alibaba: 'https://www.alibaba.com/product-detail/PISTOL-TS-A1095S-OEM-Custom-Logo_11000034530753.html',
+    specs: {
+      'Size': '4 Inch (10 cm)',
+      'Configuration': '2-Way Coaxial',
+      'Peak Power': '300W',
+      'RMS Power': '20W',
+      'Sensitivity': '92dB',
+      'Impedance': '4Ω',
+      'Frequency Response': '80 – 22,000 Hz',
+      'Cone Material': 'IMPP',
+      'Tweeter Unit': 'PEI Balanced Dome',
+      'Frame Design': 'Shallow Mount',
+      'Operating Voltage': 'DC 12V',
+    },
+    pricing: [
+      { qty: '≥ 2 pairs', price: '¥37' },
+      { qty: '≥ 10 pairs', price: '¥35' },
+      { qty: '≥ 100 pairs', price: '¥33' },
+    ],
+    features: [
+      '2-way coaxial design — full frequency coverage',
+      'IMPP cone — accurate, low-distortion mid-bass',
+      '92dB high sensitivity — compatible with factory head units',
+      'Shallow mount frame — fits depth-restricted installations',
+      'OEM custom logo available',
+      '100% tested before shipment'
+    ],
+    soldAs: 'pair',
+    pkg: '32.5 × 17 × 7.7 cm · 0.99 kg',
+  },
+  {
+    id: 'TS1096',
+    category: 'speakers',
+    categoryLabel: 'Coaxial Speaker',
+    model: 'TS1096',
+    desc: '4 Inch 2-Way Coaxial · Shallow Mount',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/He9bda202017e4d71bd1fce377f020dfdH.jpeg_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Hb2295280d63f4ef58d3bef9a50770565Y.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/H146c1b1b5d1741aa9cb8c78e7d249ff73.png_960x960q80.jpg'
+    ],
+    startPrice: '¥37',
+    unit: '/pair',
+    alibaba: 'https://www.alibaba.com/product-detail/PISTOL-TS1096-4-Inch-2-Way_1601772673136.html',
+    specs: {
+      'Size': '4 Inch (10 cm)',
+      'Configuration': '2-Way Coaxial',
+      'Peak Power': '300W',
+      'RMS Power': '25W',
+      'Sensitivity': '91dB',
+      'Impedance': '4Ω',
+      'Frequency Response': '80 – 22,000 Hz',
+      'Cone Material': 'IMPP',
+      'Tweeter Unit': 'PEI Balanced Dome',
+      'Frame Design': 'Shallow Mount',
+      'Operating Voltage': 'DC 12V',
+    },
+    pricing: [
+      { qty: '≥ 2 pairs', price: '¥37' },
+      { qty: '≥ 10 pairs', price: '¥35' },
+      { qty: '≥ 100 pairs', price: '¥33' },
+    ],
+    features: [
+      '2-way coaxial design — full frequency coverage',
+      'IMPP cone — accurate, low-distortion mid-bass',
+      'PEI balanced dome tweeter — clear high-frequency extension',
+      'Shallow mount frame — fits depth-restricted installations',
+      '91dB sensitivity — compatible with factory head units',
+      '100% tested before shipment'
+    ],
+    soldAs: 'pair',
+    pkg: '32.5 × 17 × 7.7 cm · 0.99 kg',
+  },
+  {
+    id: 'TS-A1372',
+    category: 'speakers',
+    categoryLabel: 'Coaxial Speaker',
+    model: 'TS-A1372',
+    desc: '5 Inch 2-Way Coaxial · Factory Price',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/H335c37be088b4d6999f8fdb85680aefba.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Hcdd2bbef86df466bac3fa45d1e8ea5c8B.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Hb5118ac3582f4c5ab21f3070ef93783ed.png_960x960q80.jpg'
+    ],
+    startPrice: '¥44',
+    unit: '/pair',
+    alibaba: 'https://www.alibaba.com/product-detail/PISTOL-TS-A1372E-Factory-Price-Customized_1601773165149.html',
+    specs: {
+      'Size': '5 Inch (13 cm)',
+      'Configuration': '2-Way Coaxial',
+      'Peak Power': '180W',
+      'RMS Power': '25W',
+      'Sensitivity': '91dB',
+      'Impedance': '4Ω',
+      'Frequency Response': '60 – 22,000 Hz',
+      'Cone Material': 'IMPP',
+      'Tweeter Unit': 'PEI Balanced Dome',
+      'Frame Design': 'Shallow Mount',
+      'Operating Voltage': 'DC 12V',
+    },
+    pricing: [
+      { qty: '≥ 2 pairs', price: '¥44' },
+      { qty: '≥ 10 pairs', price: '¥41' },
+      { qty: '≥ 100 pairs', price: '¥39' },
+    ],
+    features: [
+      '2-way coaxial design — full frequency coverage',
+      'IMPP cone — accurate, low-distortion mid-bass',
+      'Shallow mount frame — fits depth-restricted installations',
+      '91dB sensitivity — compatible with factory head units',
+      'Factory price, OEM/ODM customization available',
+      '100% tested before shipment'
+    ],
+    soldAs: 'pair',
+    pkg: '36 × 19 × 9 cm · 1.43 kg',
+  },
+  {
+    id: 'TS-A1395S',
+    category: 'speakers',
+    categoryLabel: 'Coaxial Speaker',
+    model: 'TS-A1395S',
+    desc: '5 Inch 3-Way Coaxial · 400W Peak',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/H064970e3b24b4630ac174684a9d323eaV.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/A6f6f1c30e29d436c8ca004a2a7f711e7P.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Af9093f50eba744138931a67efc8ecf4fF.png_960x960q80.jpg'
+    ],
+    startPrice: '¥44',
+    unit: '/pair',
+    alibaba: 'https://www.alibaba.com/product-detail/PISTOL-TS-A1395S-5-Inch-13cm_1601757062161.html',
+    specs: {
+      'Size': '5 Inch (13 cm)',
+      'Configuration': '3-Way Coaxial',
+      'Peak Power': '400W',
+      'RMS Power': '25W',
+      'Sensitivity': '92dB',
+      'Impedance': '4Ω',
+      'Frequency Response': '60 – 22,000 Hz',
+      'Cone Material': 'IMPP',
+      'Tweeter Unit': 'PEI Balanced Dome',
+      'Frame Design': 'Shallow Mount',
+      'Operating Voltage': 'DC 12V',
+    },
+    pricing: [
+      { qty: '≥ 2 pairs', price: '¥44' },
+      { qty: '≥ 10 pairs', price: '¥41' },
+      { qty: '≥ 100 pairs', price: '¥39' },
+    ],
+    features: [
+      '3-way coaxial design — multi-driver full frequency coverage',
+      'IMPP cone — accurate, low-distortion mid-bass',
+      '92dB high sensitivity — compatible with factory head units',
+      'Shallow mount frame — fits depth-restricted installations',
+      '100% tested before shipment'
+    ],
+    soldAs: 'pair',
+    pkg: '36 × 19 × 9 cm · 1.43 kg',
+  },
+  {
+    id: 'TS-A1396S',
+    category: 'speakers',
+    categoryLabel: 'Coaxial Speaker',
+    model: 'TS-A1396S',
+    desc: '5 Inch 2-Way Coaxial · Professional Grade',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/Hbca8c4726d644eb1bf790fd16718a1a8R.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Ha380560f90054715b1e8b5125154e00f3.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/H0d698d22ec1741d7989a94324372eff0F.png_960x960q80.jpg'
+    ],
+    startPrice: '¥44',
+    unit: '/pair',
+    alibaba: 'https://www.alibaba.com/product-detail/TS-A1396S-Professional-400W-Max-92dB_1601773188258.html',
+    specs: {
+      'Size': '5 Inch (13 cm)',
+      'Configuration': '2-Way Coaxial',
+      'Peak Power': '400W',
+      'RMS Power': '25W',
+      'Sensitivity': '92dB',
+      'Impedance': '4Ω',
+      'Frequency Response': '60 – 22,000 Hz',
+      'Cone Material': 'IMPP',
+      'Tweeter Unit': 'PEI Balanced Dome',
+      'Frame Design': 'Shallow Mount',
+      'Operating Voltage': 'DC 12V',
+    },
+    pricing: [
+      { qty: '≥ 2 pairs', price: '¥44' },
+      { qty: '≥ 10 pairs', price: '¥41' },
+      { qty: '≥ 100 pairs', price: '¥39' },
+    ],
+    features: [
+      'Professional-grade 2-way coaxial design',
+      'IMPP cone — accurate, low-distortion mid-bass',
+      '92dB high sensitivity — superior high-frequency performance',
+      'Shallow mount frame — fits depth-restricted installations',
+      '100% tested before shipment'
+    ],
+    soldAs: 'pair',
+    pkg: '36 × 19 × 9 cm · 1.43 kg',
+  },
+  {
+    id: 'TS-A1672',
+    category: 'speakers',
+    categoryLabel: 'Coaxial Speaker',
+    model: 'TS-A1672',
+    desc: '6 Inch 2-Way Coaxial · 220W Peak',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/He0fe6a0a5e1e4211a80838cb140ac972Y.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/H2c8dd61e8a84499ca0a639cfa9f52b75i.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Hf97378b500b444568bf710d31259fed0Q.png_960x960q80.jpg'
+    ],
+    startPrice: '¥50',
+    unit: '/pair',
+    alibaba: 'https://www.alibaba.com/product-detail/TS-A1672E-220W-Max-91dB-Sensitivity_1601773217023.html',
+    specs: {
+      'Size': '6 Inch (16 cm)',
+      'Configuration': '2-Way Coaxial',
+      'Peak Power': '220W',
+      'RMS Power': '30W',
+      'Sensitivity': '91dB',
+      'Impedance': '4Ω',
+      'Frequency Response': '50 – 22,000 Hz',
+      'Cone Material': 'IMPP',
+      'Tweeter Unit': 'PEI Balanced Dome',
+      'Frame Design': 'Shallow Mount',
+      'Operating Voltage': 'DC 12V',
+    },
+    pricing: [
+      { qty: '≥ 2 pairs', price: '¥50' },
+      { qty: '≥ 10 pairs', price: '¥48' },
+      { qty: '≥ 100 pairs', price: '¥45' },
+    ],
+    features: [
+      '2-way coaxial design — full frequency coverage',
+      'IMPP cone — accurate, low-distortion mid-bass',
+      'PEI balanced dome tweeter — clear high-frequency extension',
+      'Shallow mount frame — fits depth-restricted installations',
+      '91dB sensitivity — compatible with factory head units',
+      '100% tested before shipment'
+    ],
+    soldAs: 'pair',
+    pkg: '36 × 19 × 9 cm · 1.58 kg',
+  },
+  {
+    id: 'TS-A1695S',
+    category: 'speakers',
+    categoryLabel: 'Coaxial Speaker',
+    model: 'TS-A1695S',
+    desc: '6 Inch 4-Way Coaxial · 500W Peak',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/A9ff0fb84c16c48eea48c5feccd7b7fd2S.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Abd77143a9b38458d91792cf0a63b7b77L.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Aec7c347b066241dc99022ffa01bb020eW.png_960x960q80.jpg'
+    ],
+    startPrice: '¥50',
+    unit: '/pair',
+    alibaba: 'https://www.alibaba.com/product-detail/TS-A1695S-Pistol-90dB-Efficiency-Bulk_11000034558752.html',
+    specs: {
+      'Size': '6 Inch (16 cm)',
+      'Configuration': '4-Way Coaxial',
+      'Peak Power': '500W',
+      'RMS Power': '30W',
+      'Sensitivity': '92dB',
+      'Impedance': '4Ω',
+      'Frequency Response': '50 – 22,000 Hz',
+      'Cone Material': 'IMPP',
+      'Tweeter Unit': 'PEI Balanced Dome',
+      'Frame Design': 'Shallow Mount',
+      'Operating Voltage': 'DC 12V',
+    },
+    pricing: [
+      { qty: '≥ 2 pairs', price: '¥50' },
+      { qty: '≥ 10 pairs', price: '¥48' },
+      { qty: '≥ 100 pairs', price: '¥45' },
+    ],
+    features: [
+      '4-way coaxial design — multi-driver full frequency coverage',
+      'IMPP cone — accurate, low-distortion mid-bass',
+      '92dB high sensitivity',
+      'Shallow mount frame — fits depth-restricted installations',
+      '100% tested before shipment'
+    ],
+    soldAs: 'pair',
+    pkg: '36 × 19 × 9 cm · 1.58 kg',
+  },
+  {
+    id: 'TS-A1696S',
+    category: 'speakers',
+    categoryLabel: 'Coaxial Speaker',
+    model: 'TS-A1696S',
+    desc: '6 Inch 4-Way Coaxial · 45W RMS High-Power',
+    badge: 'HIGH POWER',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/H2a44ab9e0f4d4641a3de02d263904b5fO.jpeg_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Hfa38925f8b30448c8f884088c7687fc3v.jpeg_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Hb7dae3127cd3493797e05310b3410bc6u.jpeg_960x960q80.jpg'
+    ],
+    startPrice: '¥50',
+    unit: '/pair',
+    alibaba: 'https://www.alibaba.com/product-detail/High-Power-6-Inch-4-Way_1601772619006.html',
+    specs: {
+      'Size': '6 Inch (16 cm)',
+      'Configuration': '4-Way Coaxial',
+      'Peak Power': '500W',
+      'RMS Power': '45W',
+      'Sensitivity': '91dB',
+      'Impedance': '4Ω',
+      'Frequency Response': '50 – 22,000 Hz',
+      'Cone Material': 'IMPP',
+      'Tweeter Unit': 'PEI Balanced Dome',
+      'Frame Design': 'Shallow Mount',
+      'Operating Voltage': 'DC 12V',
+    },
+    pricing: [
+      { qty: '≥ 2 pairs', price: '¥50' },
+      { qty: '≥ 10 pairs', price: '¥48' },
+      { qty: '≥ 100 pairs', price: '¥45' },
+    ],
+    features: [
+      '4-way coaxial design — multi-driver full frequency coverage',
+      'IMPP cone — accurate, low-distortion mid-bass',
+      '45W RMS high-power version — stronger output than TS-A1695S (30W)',
+      'Shallow mount frame — fits depth-restricted installations',
+      '100% tested before shipment'
+    ],
+    soldAs: 'pair',
+    pkg: '36 × 19 × 9 cm · 1.58 kg',
+  },
+  {
+    id: 'TS-A6995R',
+    category: 'speakers',
+    categoryLabel: 'Oval Speaker',
+    model: 'TS-A6995R',
+    desc: '6×9 Inch 5-Way Coaxial · 100W RMS',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/Haec7b72ae95a440b93d13bcd5cb623c0i.jpeg_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/H84140e6491e24c709ba23ae4cbbddf8bp.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Ha52c06c418bf4241822757d87afd8383Q.png_960x960q80.jpg'
+    ],
+    startPrice: '¥77',
+    unit: '/pair',
+    alibaba: 'https://www.alibaba.com/product-detail/5-Way-Coaxial-Car-Speaker-6x9_1601772559928.html',
+    specs: {
+      'Size': '6×9 Inch (163×237 mm) Oval',
+      'Configuration': '5-Way Coaxial',
+      'Peak Power': '600W',
+      'RMS Power': '100W',
+      'Sensitivity': '92dB',
+      'Impedance': '4Ω',
+      'Frequency Response': '45 – 22,000 Hz',
+      'Cone Material': 'IMPP',
+      'Tweeter Unit': 'PEI Balanced Dome',
+      'Frame Design': 'Shallow Mount',
+      'Operating Voltage': 'DC 12V',
+    },
+    pricing: [
+      { qty: '≥ 2 pairs', price: '¥77' },
+      { qty: '≥ 10 pairs', price: '¥73' },
+      { qty: '≥ 100 pairs', price: '¥69' },
+    ],
+    features: [
+      '5-way coaxial oval design — multi-driver complete frequency coverage',
+      'IMPP cone — accurate, low-distortion mid-bass',
+      '100W RMS — powerful output capability',
+      '92dB high sensitivity',
+      'Shallow mount frame — fits depth-restricted installations',
+      '100% tested before shipment'
+    ],
+    soldAs: 'pair',
+    pkg: '36 × 28.5 × 12 cm · 4.27 kg',
+  },
+  {
+    id: 'TS-A6996S',
+    category: 'speakers',
+    categoryLabel: 'Oval Speaker',
+    model: 'TS-A6996S',
+    desc: '6×9 Inch 5-Way Coaxial · 1000W Peak',
+    badge: '1000W',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/H632aab7b9e764facbfe0b7e117c73297M.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/H1a2579b347ce4323a43912ce47235215G.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Hf682765595e7409cb88e74d44bb61478r.png_960x960q80.jpg'
+    ],
+    startPrice: '¥77',
+    unit: '/pair',
+    alibaba: 'https://www.alibaba.com/product-detail/Pistol-TS-A6996S-Oval-Design-91dB_1601773213233.html',
+    specs: {
+      'Size': '6×9 Inch (163×237 mm) Oval',
+      'Configuration': '5-Way Coaxial',
+      'Peak Power': '1000W',
+      'RMS Power': '100W',
+      'Sensitivity': '92dB',
+      'Impedance': '4Ω',
+      'Frequency Response': '45 – 22,000 Hz',
+      'Cone Material': 'IMPP',
+      'Tweeter Unit': 'PEI Balanced Dome',
+      'Frame Design': 'Shallow Mount',
+      'Operating Voltage': 'DC 12V',
+    },
+    pricing: [
+      { qty: '≥ 2 pairs', price: '¥77' },
+      { qty: '≥ 10 pairs', price: '¥73' },
+      { qty: '≥ 100 pairs', price: '¥69' },
+    ],
+    features: [
+      '5-way coaxial oval design — multi-driver complete frequency coverage',
+      'IMPP cone — accurate, low-distortion mid-bass',
+      '1000W peak — higher peak power than TS-A6995R (600W), same RMS',
+      '92dB high sensitivity',
+      'Shallow mount frame — fits depth-restricted installations',
+      '100% tested before shipment'
+    ],
+    soldAs: 'pair',
+    pkg: '36 × 28.5 × 12 cm · 4.27 kg',
+  },
+  {
+    id: 'GM-338',
+    category: 'amplifiers',
+    categoryLabel: 'Car Amplifier',
+    model: 'GM-338',
+    desc: '2-Channel Class AB · 480W Peak',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/Hba58a5abbefc4f8090b6b9213332259aM.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Hfeb6fba230514133a7131523311052e9p.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Hf4ffadba15154699801aa31c1999b4e4i.png_960x960q80.jpg'
+    ],
+    startPrice: '¥178',
+    unit: '/pc',
+    alibaba: 'https://www.alibaba.com/product-detail/480W-Class-AB-2-Channel-Car_1601766769659.html',
+    specs: {
+      'Amplifier Class': 'Class AB',
+      'Channels': '2-Channel',
+      'Peak Power': '480W',
+      'RMS @ 4Ω': '60W × 2',
+      'RMS @ 2Ω': '90W × 2',
+      'Bridged Output': '180W × 1',
+      'Min. Impedance': '2Ω',
+      'Operating Voltage': '12V DC',
+      'Frequency Response': '20Hz – 20kHz',
+      'S/N Ratio': '≥ 90dB',
+    },
+    pricing: [
+      { qty: '≥ 2 pcs', price: '¥178' },
+      { qty: '≥ 10 pcs', price: '¥170' },
+      { qty: '≥ 100 pcs', price: '¥161' },
+    ],
+    features: [
+      'Class AB amplifier — high efficiency & clear audio quality',
+      '2-channel independent gain control',
+      'Variable Low Pass Filter + Bass Boost',
+      '2Ω stable operation',
+      'Die-cast aluminum heatsink chassis',
+      '3-way protection: Thermal / Short Circuit / Overload',
+      '100% tested before shipment'
+    ],
+    soldAs: 'piece',
+    pkg: '27 × 27 × 8 cm · 2.5 kg',
+  },
+  {
+    id: 'GM-D804',
+    category: 'amplifiers',
+    categoryLabel: 'Car Amplifier',
+    model: 'GM-D804',
+    desc: '4-Channel Class D · 3800W Peak',
+    badge: 'CLASS D',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/Hc9f72cab244547208a2a5fc9956151b9W.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/H282b04ae6d5b4e66a1cfed3973b429bdV.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/A196f27594cc542a09896966b72d2fae05.png_960x960q80.jpg'
+    ],
+    startPrice: '¥370',
+    unit: '/pc',
+    alibaba: 'https://www.alibaba.com/product-detail/PISTOL-Digital-3800W-Max-Quick-Dispatch_1601773686006.html',
+    specs: {
+      'Amplifier Class': 'Class D',
+      'Channels': '4-Channel',
+      'Peak Power': '3800W',
+      'RMS @ 4Ω': '75W × 4',
+      'RMS @ 2Ω': '110W × 4',
+      'Bridged Output': '150W × 2',
+      'Min. Impedance': '2Ω',
+      'Operating Voltage': '12–24V DC',
+      'Frequency Response': '10Hz – 50kHz',
+      'S/N Ratio': '≥ 91dB',
+    },
+    pricing: [
+      { qty: '≥ 2 pcs', price: '¥370' },
+      { qty: '≥ 10 pcs', price: '¥352' },
+      { qty: '≥ 100 pcs', price: '¥333' },
+    ],
+    features: [
+      'Class D amplifier — ultra-high efficiency, minimal heat',
+      '4-channel independent gain control',
+      'Variable Low Pass Filter + Bass Boost',
+      '2Ω stable, supports 12–24V wide voltage range',
+      'Die-cast aluminum heatsink chassis',
+      '3-way protection: Thermal / Short Circuit / Overload',
+      '100% tested before shipment'
+    ],
+    soldAs: 'piece',
+    pkg: '38 × 23 × 8 cm · 3.5 kg',
+  },
+  {
+    id: 'GM-E1004',
+    category: 'amplifiers',
+    categoryLabel: 'Car Amplifier',
+    model: 'GM-E1004',
+    desc: '4-Channel Class AB · 1200W Peak · 100W RMS',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/Hb976b24a68d54dbe8fecf911943d7dacL.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/H66fc7392e31949979484d43720e7311cP.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/H3bbfc2460933428a866b7464f6530468x.png_960x960q80.jpg'
+    ],
+    startPrice: '¥178',
+    unit: '/pc',
+    alibaba: 'https://www.alibaba.com/product-detail/PISTOL-Factory-Direct-1200W-100W-RMS_1601773919003.html',
+    specs: {
+      'Amplifier Class': 'Class AB',
+      'Channels': '4-Channel',
+      'Peak Power': '1200W',
+      'RMS @ 4Ω': '100W × 4',
+      'RMS @ 2Ω': '150W × 4',
+      'Bridged Output': '250W × 2',
+      'Min. Impedance': '2Ω',
+      'Operating Voltage': '14.4V DC',
+      'Frequency Response': '10Hz – 60kHz',
+      'S/N Ratio': '90–100dB',
+    },
+    pricing: [
+      { qty: '≥ 2 pcs', price: '¥178' },
+      { qty: '≥ 10 pcs', price: '¥170' },
+      { qty: '≥ 100 pcs', price: '¥161' },
+    ],
+    features: [
+      'Class AB amplifier — high efficiency & low distortion',
+      '4-channel independent gain control',
+      'Variable Low Pass Filter + Bass Boost',
+      '2Ω stable operation',
+      'Die-cast aluminum heatsink chassis',
+      '3-way protection: Thermal / Short Circuit / Overload',
+      'OEM/ODM custom logo available',
+      '100% tested before shipment'
+    ],
+    soldAs: 'piece',
+    pkg: '42 × 31 × 12 cm · 6.0 kg',
+  },
+  {
+    id: 'JB-480',
+    category: 'amplifiers',
+    categoryLabel: 'Car Amplifier',
+    model: 'JB-480',
+    desc: '4-Channel Class AB · 4000W Peak · 650W RMS',
+    badge: '650W RMS',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/H9bfafea70ce84232b51173b60a1e9c14t.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Hb7d8f1c91ddf4eed9bebb2fb7af879013.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Ae534d2c9abf149ac8193b1fc899080ab1.png_960x960q80.jpg'
+    ],
+    startPrice: '¥178',
+    unit: '/pc',
+    alibaba: 'https://www.alibaba.com/product-detail/4000W-Class-AB-4-Channel-Car_1601766762749.html',
+    specs: {
+      'Amplifier Class': 'Class AB',
+      'Channels': '4-Channel',
+      'Peak Power': '4000W',
+      'RMS @ 4Ω': '650W × 4',
+      'Bridged Output': '1300W × 2',
+      'Min. Impedance': '4Ω',
+      'Operating Voltage': '12–24V DC',
+      'Frequency Response': '10Hz – 50kHz',
+      'S/N Ratio': '≥ 91dB',
+    },
+    pricing: [
+      { qty: '≥ 2 pcs', price: '¥178' },
+      { qty: '≥ 10 pcs', price: '¥170' },
+      { qty: '≥ 100 pcs', price: '¥161' },
+    ],
+    features: [
+      'Class AB amplifier — high efficiency & clear audio',
+      '4-channel independent gain control',
+      'Variable Low Pass Filter + Bass Boost',
+      '4Ω stable, supports 12–24V wide voltage range',
+      'Die-cast aluminum heatsink chassis',
+      '3-way protection: Thermal / Short Circuit / Overload',
+      '100% tested before shipment'
+    ],
+    soldAs: 'piece',
+    pkg: '37 × 24 × 7 cm · 3.5 kg',
+  },
+  {
+    id: 'KAC-PS804EX',
+    category: 'amplifiers',
+    categoryLabel: 'Car Amplifier',
+    model: 'KAC-PS804EX',
+    desc: '4-Channel Class D · 1000W Peak · Small MOQ',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/H544b814e08ae409f806f386a48caf3b1w.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Hce3ca21fb0cc4cb9aff3f5a69fa91409Q.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Hfbb028d25c9f4941827dacefaab5aa5cP.png_960x960q80.jpg'
+    ],
+    startPrice: '¥364',
+    unit: '/pc',
+    alibaba: 'https://www.alibaba.com/product-detail/PISTOL-1000W-Max-Small-MOQ-Fast_1601773490763.html',
+    specs: {
+      'Amplifier Class': 'Class D',
+      'Channels': '4-Channel',
+      'Peak Power': '1000W',
+      'RMS @ 4Ω': '80W × 4',
+      'RMS @ 2Ω': '110W × 4',
+      'Bridged Output': '170W × 2',
+      'Min. Impedance': '2Ω',
+      'Operating Voltage': '14.4V DC',
+      'Frequency Response': '10Hz – 50kHz',
+      'S/N Ratio': '≥ 92dB',
+    },
+    pricing: [
+      { qty: '≥ 2 pcs', price: '¥364' },
+      { qty: '≥ 10 pcs', price: '¥345' },
+      { qty: '≥ 100 pcs', price: '¥327' },
+    ],
+    features: [
+      'Class D amplifier — ultra-high efficiency, minimal heat',
+      '4-channel independent gain control',
+      'Variable Low Pass Filter + Bass Boost',
+      '2Ω stable operation',
+      'Die-cast aluminum heatsink chassis',
+      '3-way protection: Thermal / Short Circuit / Overload',
+      'Small MOQ, fast dispatch',
+      '100% tested before shipment'
+    ],
+    soldAs: 'piece',
+    pkg: '42 × 28 × 11 cm · 5.0 kg',
+  },
+  {
+    id: 'KW-45.1',
+    category: 'amplifiers',
+    categoryLabel: 'Monoblock Amplifier',
+    model: 'KW-45.1',
+    desc: '1-Channel Class D Monoblock · 3000W Peak',
+    badge: 'MONO',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/Hc02f64955b044967bbaf2f70e4d318bcf.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Hbcbea393e17f4b589cf8fff6f4c9e0b0b.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Hfd30c814134f44eab52b6029f6edb13bW.png_960x960q80.jpg'
+    ],
+    startPrice: '¥178',
+    unit: '/pc',
+    alibaba: 'https://www.alibaba.com/product-detail/PISTOL-Factory-Price-Private-Label-3000W_1601773534592.html',
+    specs: {
+      'Amplifier Class': 'Class D',
+      'Channels': '1-Channel (Monoblock)',
+      'Peak Power': '3000W',
+      'RMS @ 4Ω': '450W',
+      'RMS @ 2Ω': '600W',
+      'Min. Impedance': '2Ω',
+      'Operating Voltage': '12V DC',
+      'Frequency Response': 'Low Pass Only',
+      'S/N Ratio': '≥ 90dB',
+    },
+    pricing: [
+      { qty: '≥ 2 pcs', price: '¥178' },
+      { qty: '≥ 10 pcs', price: '¥170' },
+      { qty: '≥ 100 pcs', price: '¥161' },
+    ],
+    features: [
+      'Class D monoblock — designed specifically for subwoofer duty',
+      'Ultra-high efficiency, minimal heat generation',
+      'Variable Low Pass Filter + Subsonic Filter + Bass Boost',
+      '2Ω stable operation',
+      'Die-cast aluminum heatsink chassis',
+      '3-way protection: Thermal / Short Circuit / Overload',
+      'Remote subwoofer level control included',
+      '100% tested before shipment'
+    ],
+    soldAs: 'piece',
+    pkg: '37 × 23 × 7 cm · 3.2 kg',
+  },
+  {
+    id: 'XM-N502',
+    category: 'amplifiers',
+    categoryLabel: 'Car Amplifier',
+    model: 'XM-N502',
+    desc: '2-Channel Class AB · 500W Peak · ≥100dB S/N',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/Hba58a5abbefc4f8090b6b9213332259aM.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Hfeb6fba230514133a7131523311052e9p.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/Hf4ffadba15154699801aa31c1999b4e4i.png_960x960q80.jpg'
+    ],
+    startPrice: '¥218',
+    unit: '/pc',
+    alibaba: 'https://www.alibaba.com/product-detail/500W-Class-AB-2-Channel-Car_1601766874050.html',
+    specs: {
+      'Amplifier Class': 'Class AB',
+      'Channels': '2-Channel',
+      'Peak Power': '500W',
+      'RMS @ 4Ω': '65W × 2',
+      'RMS @ 2Ω': '85W × 2',
+      'Bridged Output': '500W × 1',
+      'Min. Impedance': '2Ω',
+      'Operating Voltage': '14.4V DC',
+      'Frequency Response': '5Hz – 50kHz',
+      'S/N Ratio': '≥ 100dB',
+    },
+    pricing: [
+      { qty: '≥ 2 pcs', price: '¥218' },
+      { qty: '≥ 10 pcs', price: '¥207' },
+      { qty: '≥ 100 pcs', price: '¥196' },
+    ],
+    features: [
+      'Class AB amplifier — high efficiency & low distortion',
+      '2-channel independent gain control',
+      'Variable Low Pass Filter + Bass Boost',
+      '2Ω stable operation',
+      'Die-cast aluminum heatsink chassis',
+      '3-way protection: Thermal / Short Circuit / Overload',
+      '100% tested before shipment'
+    ],
+    soldAs: 'piece',
+    pkg: '35 × 26 × 11 cm · 4.0 kg',
+  },
+  {
+    id: 'XM-N1004',
+    category: 'amplifiers',
+    categoryLabel: 'Car Amplifier',
+    model: 'XM-N1004',
+    desc: '4-Channel Class AB · 1000W Peak · ≥100dB S/N',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/H3bbf8ad74f87424782849ad60d8b5b92t.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/H590e1361de6b4a79b3bacafd427a23d6n.jpg_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/H50d69b2fc1ec493986f918e9f034a1307.png_960x960q80.jpg'
+    ],
+    startPrice: '¥364',
+    unit: '/pc',
+    alibaba: 'https://www.alibaba.com/product-detail/PISTOL-Reliable-Supplier-1000W-4-Channel_1601773950268.html',
+    specs: {
+      'Amplifier Class': 'Class AB',
+      'Channels': '4-Channel',
+      'Peak Power': '1000W',
+      'RMS @ 4Ω': '70W × 4',
+      'RMS @ 2Ω': '85W × 4',
+      'Bridged Output': '500W × 2',
+      'Min. Impedance': '2Ω',
+      'Operating Voltage': '12V DC',
+      'Frequency Response': '5Hz – 50kHz',
+      'S/N Ratio': '≥ 100dB',
+    },
+    pricing: [
+      { qty: '≥ 2 pcs', price: '¥364' },
+      { qty: '≥ 10 pcs', price: '¥345' },
+      { qty: '≥ 100 pcs', price: '¥327' },
+    ],
+    features: [
+      'Class AB amplifier — high fidelity, low distortion',
+      '4-channel independent gain control',
+      'Variable Low Pass Filter + Bass Boost',
+      '2Ω stable operation',
+      'S/N ratio ≥ 100dB — premium audio clarity',
+      'Die-cast aluminum heatsink chassis',
+      '3-way protection: Thermal / Short Circuit / Overload',
+      '100% tested before shipment'
+    ],
+    soldAs: 'piece',
+    pkg: '41 × 30 × 12 cm · 5.5 kg',
+  },
+  {
+    id: '308D4SW',
+    category: 'subwoofers',
+    categoryLabel: 'Subwoofer',
+    model: '308D4SW',
+    desc: '12 Inch Passive Subwoofer · 400W RMS · 1400W Peak',
+    badge: '12"',
+    images: [
+      'https://s.alicdn.com/@sc04/kf/H7c922eabaf484fbb8e58e96ab00d69a6B.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/H78adea22d12a486a8eef294717caef3eo.png_960x960q80.jpg',
+      'https://s.alicdn.com/@sc04/kf/H0ee7a127e51a484ea9cedb77351e27adV.png_960x960q80.jpg'
+    ],
+    startPrice: '¥397',
+    unit: '/pc',
+    alibaba: 'https://www.alibaba.com/product-detail/PISTOL-OEM-ODM-12-Inch-Car_1601782106332.html',
+    specs: {
+      'Size': '12 Inch (305 mm)',
+      'Type': 'Passive Subwoofer',
+      'Peak Power': '1400W',
+      'RMS Power': '400W',
+      'Impedance': '4Ω',
+      'Sensitivity': '92dB',
+      'Frequency Response': '20 – 180 Hz',
+      'Voice Coil': 'Single Voice Coil',
+      'Audio Output': 'Mono',
+      'Operating Voltage': 'DC 12V',
+    },
+    pricing: [
+      { qty: '≥ 2 pcs', price: '¥397' },
+      { qty: '≥ 10 pcs', price: '¥377' },
+      { qty: '≥ 100 pcs', price: '¥357' },
+      { qty: '≥ 500 pcs', price: 'TBD' },
+    ],
+    features: [
+      '12-inch large cone — deep, powerful bass output',
+      '400W RMS / 1400W peak — high SPL performance',
+      '4Ω impedance — compatible with most car amplifiers',
+      '92dB sensitivity — efficient power conversion',
+      'Frequency response 20–180 Hz — full bass range coverage',
+      'Supports sealed or ported enclosure',
+      'OEM/ODM customization available'
+    ],
+    soldAs: 'piece',
+    pkg: '53 × 35 × 43 cm · 13.0 kg',
+  }
+];
+
+let currentFilter = 'all';
+
+function renderCatalog(filter) {
+  const grid = document.getElementById('catalog-grid');
+  const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+  grid.innerHTML = filtered.map(p => `
+    <div class="product-card" onclick="showDetail('${p.id}')" data-cat="${p.category}">
+      ${p.badge ? `<div class="card-badge">${p.badge}</div>` : ''}
+      <div class="card-img">
+        <img src="${p.images[0]}" alt="${p.model}" loading="lazy" onerror="this.style.display='none'">
+      </div>
+      <div class="card-body">
+        <div class="card-category">${p.categoryLabel}</div>
+        <div class="card-model">${p.model}</div>
+        <div class="card-desc">${p.desc}</div>
+        <div class="card-footer">
+          <div class="card-price">
+            <div class="price-from">From</div>
+            <div class="price-val">${p.startPrice} <span class="price-unit">${p.unit}</span></div>
+          </div>
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterProducts(cat, btn) {
+  currentFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCatalog(cat);
+}
+
+function showDetail(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+
+  // Gallery
+  const mainImg = document.getElementById('main-img');
+  mainImg.src = p.images[0];
+  mainImg.alt = p.model;
+
+  const thumbRow = document.getElementById('thumb-row');
+  thumbRow.innerHTML = p.images.map((src, i) => `
+    <div class="thumb ${i === 0 ? 'active' : ''}" onclick="switchImg('${src}', this)">
+      <img src="${src}" alt="" loading="lazy">
+    </div>
+  `).join('');
+
+  // Info
+  const specsRows = Object.entries(p.specs).map(([k, v]) =>
+    `<tr><td>${k}</td><td>${v}</td></tr>`
+  ).join('');
+
+  const pricingRows = p.pricing.map(tier => `
+    <div class="price-tier">
+      <div class="tier-qty">${tier.qty}</div>
+      <div class="tier-price">${tier.price} <span style="font-size:14px;color:var(--gray);font-family:'Barlow',sans-serif">${p.unit === '/pair' ? '/pair' : '/pc'}</span></div>
+    </div>
+  `).join('');
+
+  const featItems = p.features.map(f => `<li>${f}</li>`).join('');
+
+  document.getElementById('detail-info').innerHTML = `
+    <div class="detail-eyebrow">PISTOL · ${p.categoryLabel}</div>
+    <div class="detail-model">${p.model}</div>
+    <div class="detail-subtitle">${p.desc}</div>
+
+    <div class="pricing-block">
+      <h3>价格 — FOB 广州 · 人民币报价</h3>
+      <div class="price-tiers">${pricingRows}</div>
+      <div class="price-note">MOQ: 2 pcs · CE / RoHS Certified · OEM/ODM Available</div>
+    </div>
+
+    <div class="specs-section">
+      <div class="section-heading">Technical Specifications</div>
+      <table class="specs-table">${specsRows}</table>
+    </div>
+
+    <div class="specs-section">
+      <div class="section-heading">Key Features</div>
+      <ul class="features-list">${featItems}</ul>
+    </div>
+
+    <div class="specs-section">
+      <div class="section-heading">Packaging</div>
+      <div class="terms-grid">
+        <div class="term-cell"><div class="term-label">Unit Size</div><div class="term-val">${p.pkg.split('·')[0].trim()}</div></div>
+        <div class="term-cell"><div class="term-label">Gross Weight</div><div class="term-val">${p.pkg.split('·')[1].trim()}</div></div>
+        <div class="term-cell"><div class="term-label">Sold As</div><div class="term-val">${p.soldAs === 'pair' ? '1 Pair (2 pcs)' : '1 pc'}</div></div>
+        <div class="term-cell"><div class="term-label">Lead Time</div><div class="term-val">≤ 7 days (small) · ≤ 15 days (bulk)</div></div>
+      </div>
+    </div>
+
+    <div class="contact-cta">
+      <h3>Request a Quote</h3>
+      <div class="contact-items">
+        <div class="contact-item"><span class="contact-icon">✉</span> miyac@loteintl.cn</div>
+        <div class="contact-item"><span class="contact-icon">📞</span> (+086) 13052579868</div>
+        <div class="contact-item"><span class="contact-icon">💬</span> WeChat: momomiyacheng</div>
+        <div class="contact-item"><span class="contact-icon">👤</span> Contact: Miya Cheng</div>
+      </div>
+      <a class="alibaba-link" href="${p.alibaba}" target="_blank">
+        View on Alibaba →
+      </a>
+    </div>
+  `;
+
+  document.getElementById('index-page').style.display = 'none';
+  document.getElementById('detail-page').style.display = 'block';
+  document.getElementById('back-btn').style.display = 'flex';
+  document.getElementById('detail-page').scrollIntoView({ behavior: 'instant' });
+  window.scrollTo(0, 0);
+}
+
+function switchImg(src, thumb) {
+  document.getElementById('main-img').src = src;
+  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+  thumb.classList.add('active');
+}
+
+function showIndex() {
+  document.getElementById('detail-page').style.display = 'none';
+  document.getElementById('index-page').style.display = 'block';
+  document.getElementById('back-btn').style.display = 'none';
+  window.scrollTo(0, 0);
+}
+
+// Init
+renderCatalog('all');
+</script>
+</body>
+</html>

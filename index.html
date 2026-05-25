@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PISTOL Car Audio — Select Catalog</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:  #09090b;
+    --dark:   #0f1012;
+    --card:   #14161a;
+    --border: #242629;
+    --border2:#2e3136;
+    --red:    #e8222a;
+    --red-lo: rgba(232,34,42,0.08);
+    --red-mid:rgba(232,34,42,0.18);
+    --white:  #f0f0ef;
+    --gray:   #6b7280;
+    --gray2:  #9ca3af;
+    --light:  #d1d5db;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE ─── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  /* ─── GRID BACKGROUND ─── */
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(232,34,42,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,34,42,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+  /* ─── GLOWING ORB ─── */
+  .glow {
+    position: fixed;
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 500px;
+    background: radial-gradient(ellipse, rgba(232,34,42,0.12) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    animation: glowPulse 6s ease-in-out infinite;
+  }
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.8; transform: translateX(-50%) scale(1); }
+    50%       { opacity: 1.0; transform: translateX(-50%) scale(1.08); }
+  }
+
+  /* ─── PAGE LAYOUT ─── */
+  .page {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 60px 24px;
+    gap: 0;
+  }
+
+  /* ─── EYEBROW ─── */
+  .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+    animation: fadeUp .5s ease both;
+  }
+  .eyebrow::before,
+  .eyebrow::after {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--red);
+    opacity: 0.5;
+  }
+
+  /* ─── LOGO ─── */
+  .logo-wrap {
+    text-align: center;
+    margin-bottom: 12px;
+    animation: fadeUp .5s .08s ease both;
+  }
+  .logo-main {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 16vw, 160px);
+    line-height: 0.85;
+    letter-spacing: 8px;
+    color: var(--white);
+    display: block;
+    position: relative;
+  }
+  .logo-main .o {
+    color: var(--red);
+    display: inline-block;
+    animation: oSpin 12s linear infinite;
+  }
+  @keyframes oSpin {
+    0%   { text-shadow: 0 0 0px var(--red); }
+    50%  { text-shadow: 0 0 24px rgba(232,34,42,0.7), 0 0 48px rgba(232,34,42,0.3); }
+    100% { text-shadow: 0 0 0px var(--red); }
+  }
+  .logo-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 300;
+    letter-spacing: 6px; text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 10px;
+    display: block;
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    width: 100%; max-width: 560px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border2), var(--red), var(--border2), transparent);
+    margin: 36px auto;
+    animation: fadeUp .5s .16s ease both;
+  }
+
+  /* ─── HEADLINE ─── */
+  .headline {
+    text-align: center;
+    margin-bottom: 12px;
+    animation: fadeUp .5s .22s ease both;
+  }
+  .headline h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(20px, 4vw, 28px);
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--light);
+    line-height: 1.4;
+  }
+  .headline p {
+    font-size: 14px; color: var(--gray); margin-top: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── CATALOG CARDS ─── */
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    width: 100%;
+    max-width: 640px;
+    margin-top: 40px;
+    animation: fadeUp .5s .3s ease both;
+  }
+
+  .card {
+    position: relative;
+    display: flex; flex-direction: column;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    background: var(--card);
+    padding: 32px 28px 28px;
+    overflow: hidden;
+    transition: border-color .25s, transform .25s, background .25s;
+    cursor: pointer;
+    group: true;
+  }
+  .card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--red-lo), transparent 60%);
+    opacity: 0;
+    transition: opacity .3s;
+  }
+  .card:hover { border-color: var(--red); transform: translateY(-3px); background: #17191e; }
+  .card:hover::before { opacity: 1; }
+  .card:hover .card-arrow { transform: translate(4px, -4px); color: var(--red); }
+  .card:hover .card-currency { color: var(--red); }
+
+  /* corner accent */
+  .card-corner {
+    position: absolute;
+    top: 0; right: 0;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 32px 32px 0;
+    border-color: transparent var(--border) transparent transparent;
+    transition: border-color .25s;
+  }
+  .card:hover .card-corner { border-color: transparent var(--red) transparent transparent; }
+
+  .card-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gray); margin-bottom: 16px;
+  }
+  .card-currency {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px; line-height: 1;
+    color: var(--white);
+    transition: color .25s;
+    margin-bottom: 4px;
+  }
+  .card-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--white); margin-bottom: 8px;
+  }
+  .card-desc {
+    font-size: 12px; color: var(--gray);
+    line-height: 1.6; margin-bottom: auto;
+    padding-bottom: 20px;
+  }
+  .card-footer-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .card-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gray2);
+  }
+  .card-arrow {
+    font-size: 18px; color: var(--gray);
+    transition: transform .2s, color .2s;
+  }
+
+  /* badge on USD card */
+  .card-badge {
+    position: absolute;
+    top: 14px; left: 28px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    background: var(--red); color: var(--white);
+    padding: 3px 8px;
+  }
+
+  /* ─── STATS ROW ─── */
+  .stats {
+    display: flex; gap: 32px;
+    margin-top: 44px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    width: 100%; max-width: 640px;
+    animation: fadeUp .5s .38s ease both;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px; color: var(--red); line-height: 1;
+  }
+  .stat-lbl {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gray); margin-top: 2px;
+  }
+
+  /* ─── CONTACT STRIP ─── */
+  .contact-strip {
+    margin-top: 44px;
+    width: 100%; max-width: 640px;
+    border: 1px solid var(--border);
+    background: var(--dark);
+    padding: 18px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+    animation: fadeUp .5s .46s ease both;
+  }
+  .contact-left {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gray);
+  }
+  .contact-left strong {
+    color: var(--white); font-size: 13px;
+    display: block; letter-spacing: 1px;
+    margin-bottom: 2px;
+  }
+  .contact-links {
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+  .contact-link {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gray2); text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    transition: color .2s, border-color .2s;
+  }
+  .contact-link:hover { color: var(--white); border-color: var(--gray2); }
+
+  /* ─── FOOTER ─── */
+  .site-footer {
+    position: relative; z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 20px 24px;
+    text-align: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gray);
+    animation: fadeUp .5s .54s ease both;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 520px) {
+    .cards { grid-template-columns: 1fr; max-width: 360px; }
+    .card-currency { font-size: 44px; }
+    .stats { gap: 20px; }
+    .contact-strip { flex-direction: column; align-items: flex-start; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<main class="page">
+
+  <div class="eyebrow">Guangzhou Xinming Auto Supplies Co., Ltd.</div>
+
+  <div class="logo-wrap">
+    <span class="logo-main">PIST<span class="o">O</span>L</span>
+    <span class="logo-sub">Car Audio · Professional Line</span>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="headline">
+    <h2>Select Your Catalog Version</h2>
+    <p>20 products · Amplifiers · Speakers · Subwoofers · FOB Guangzhou</p>
+  </div>
+
+  <div class="cards">
+
+    <!-- CNY Card -->
+    <a class="card" href="cny.html">
+      <div class="card-corner"></div>
+      <div class="card-tag">Internal Pricing</div>
+      <div class="card-currency">¥</div>
+      <div class="card-name">CNY Version</div>
+      <div class="card-desc">人民币报价册<br>内部使用 · 出厂报价</div>
+      <div class="card-footer-row">
+        <span class="card-label">Open Catalog</span>
+        <span class="card-arrow">↗</span>
+      </div>
+    </a>
+
+    <!-- USD Card -->
+    <a class="card" href="usd.html">
+      <div class="card-corner"></div>
+      <div class="card-badge">Export</div>
+      <div class="card-tag" style="margin-top:22px">Export Pricing</div>
+      <div class="card-currency">$</div>
+      <div class="card-name">USD Version</div>
+      <div class="card-desc">USD Price List<br>For overseas buyers</div>
+      <div class="card-footer-row">
+        <span class="card-label">Open Catalog</span>
+        <span class="card-arrow">↗</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num">20</div><div class="stat-lbl">Products</div></div>
+    <div class="stat"><div class="stat-num">8</div><div class="stat-lbl">Amplifiers</div></div>
+    <div class="stat"><div class="stat-num">11</div><div class="stat-lbl">Speakers</div></div>
+    <div class="stat"><div class="stat-num">1</div><div class="stat-lbl">Subwoofer</div></div>
+    <div class="stat"><div class="stat-num">CE</div><div class="stat-lbl">Certified</div></div>
+    <div class="stat"><div class="stat-num">MOQ 2</div><div class="stat-lbl">Min. Order</div></div>
+  </div>
+
+  <div class="contact-strip">
+    <div class="contact-left">
+      <strong>Miya Cheng</strong>
+      Sales · Guangzhou Xinming Auto Supplies
+    </div>
+    <div class="contact-links">
+      <a class="contact-link" href="tel:+8613052579868">📞 +86 13052579868</a>
+      <a class="contact-link" href="mailto:miyac@loteintl.cn">✉ Email</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  PISTOL · Guangzhou Xinming Auto Supplies Co., Ltd. · CE / RoHS · OEM / ODM Available
+</footer>
+
+</body>
+</html>
