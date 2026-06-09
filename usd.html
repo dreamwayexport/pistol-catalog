@@ -195,6 +195,22 @@
   }
   .filter-btn.active { color: var(--red); }
 
+  .search-wrap { margin-left: auto; position: relative; flex-shrink: 0; }
+  .search-input {
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--white); font-family: 'Barlow', sans-serif;
+    font-size: 13px; padding: 7px 36px 7px 14px; width: 220px;
+    outline: none; transition: border-color .2s;
+  }
+  .search-input:focus { border-color: var(--red); }
+  .search-input::placeholder { color: var(--gray); font-family: 'Barlow Condensed', sans-serif; letter-spacing: 1px; }
+  .search-clear {
+    position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: var(--gray); cursor: pointer;
+    font-size: 14px; display: none; line-height: 1; padding: 4px;
+  }
+  .search-clear:hover { color: var(--red); }
+
   /* Product Grid */
   .catalog-grid {
     display: grid;
@@ -606,6 +622,10 @@
     <button class="filter-btn" onclick="filterProducts('speakers', this)">Speakers</button>
     <button class="filter-btn" onclick="filterProducts('amplifiers', this)">Amplifiers</button>
     <button class="filter-btn" onclick="filterProducts('subwoofers', this)">Subwoofers</button>
+      <div class="search-wrap">
+        <input type="text" class="search-input" id="search-input" placeholder="Search…" oninput="doSearch()">
+        <button class="search-clear" id="search-clear" onclick="clearSearch()">✕</button>
+      </div>
   </div>
 
   <div class="catalog-grid" id="catalog-grid"></div>
@@ -672,6 +692,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'pair',
+    moq: '2 pcs',
+    leadTime: '≤ 7 days (≤ 2 pcs) · ≤ 15 days (≤ 10 pcs)',
     pkg: '32.5 × 17 × 7.7 cm · 0.99 kg',
   },
   {
@@ -715,6 +737,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'pair',
+    moq: '2 pcs',
+    leadTime: '≤ 7 days (≤ 2 pcs) · ≤ 15 days (≤ 10 pcs)',
     pkg: '32.5 × 17 × 7.7 cm · 1.42 kg',
   },
   {
@@ -758,6 +782,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'pair',
+    moq: '2 pcs',
+    leadTime: '≤ 7 days (≤ 2 pcs) · ≤ 15 days (≤ 10 pcs)',
     pkg: '32.5 × 17 × 7.7 cm · 1.42 kg',
   },
   {
@@ -801,6 +827,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'pair',
+    moq: '2 pcs',
+    leadTime: '≤ 7 days (≤ 2 pcs) · ≤ 15 days (≤ 10 pcs)',
     pkg: '36 × 19 × 9 cm · 1.43 kg',
   },
   {
@@ -843,6 +871,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'pair',
+    moq: '2 pcs',
+    leadTime: '≤ 7 days (≤ 2 pcs) · ≤ 15 days (≤ 10 pcs)',
     pkg: '36 × 19 × 9 cm · 1.43 kg',
   },
   {
@@ -885,6 +915,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'pair',
+    moq: '2 pcs',
+    leadTime: '≤ 7 days (≤ 2 pcs) · ≤ 15 days (≤ 10 pcs)',
     pkg: '36 × 19 × 9 cm · 1.43 kg',
   },
   {
@@ -928,6 +960,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'pair',
+    moq: '2 pcs',
+    leadTime: '≤ 7 days (≤ 2 pcs) · ≤ 15 days (≤ 10 pcs)',
     pkg: '36 × 19 × 9 cm · 2.08 kg',
   },
   {
@@ -970,6 +1004,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'pair',
+    moq: '2 pcs',
+    leadTime: '≤ 7 days (≤ 2 pcs) · ≤ 15 days (≤ 10 pcs)',
     pkg: '36 × 19 × 9 cm · 1.58 kg',
   },
   {
@@ -1013,6 +1049,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'pair',
+    moq: '2 pcs',
+    leadTime: '≤ 7 days (≤ 2 pcs) · ≤ 15 days (≤ 10 pcs)',
     pkg: '36 × 19 × 9 cm · 1.58 kg',
   },
   {
@@ -1056,6 +1094,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'pair',
+    moq: '2 pcs',
+    leadTime: '≤ 7 days (≤ 2 pcs) · ≤ 15 days (≤ 10 pcs)',
     pkg: '36 × 28.5 × 12 cm · 4.27 kg',
   },
   {
@@ -1100,6 +1140,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'pair',
+    moq: '2 pcs',
+    leadTime: '≤ 7 days (≤ 2 pcs) · ≤ 15 days (≤ 10 pcs)',
     pkg: '36 × 28.5 × 12 cm · 4.27 kg',
   },
   {
@@ -1143,6 +1185,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'piece',
+    moq: '2 pcs',
+    leadTime: '≤ 7 days (≤ 2 pcs) · ≤ 15 days (≤ 10 pcs)',
     pkg: '27 × 27 × 8 cm · 2.5 kg',
   },
   {
@@ -1187,6 +1231,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'piece',
+    moq: '2 pcs',
+    leadTime: '≤ 7 days (≤ 2 pcs) · ≤ 15 days (≤ 10 pcs)',
     pkg: '38 × 23 × 8 cm · 3.5 kg',
   },
   {
@@ -1231,6 +1277,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'piece',
+    moq: '2 pcs',
+    leadTime: '≤ 7 days (≤ 2 pcs) · ≤ 15 days (≤ 10 pcs)',
     pkg: '42 × 31 × 12 cm · 6.0 kg',
   },
   {
@@ -1272,6 +1320,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'piece',
+    moq: '500 pcs',
+    leadTime: '45 days',
     pkg: '37 × 24 × 7 cm · 3.5 kg',
   },
   {
@@ -1314,6 +1364,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'piece',
+    moq: '500 pcs',
+    leadTime: '45 days',
     pkg: '42 × 28 × 11 cm · 5.0 kg',
   },
   {
@@ -1354,6 +1406,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'piece',
+    moq: '500 pcs',
+    leadTime: '45 days',
     pkg: '37 × 23 × 7 cm · 3.2 kg',
   },
   {
@@ -1397,6 +1451,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'piece',
+    moq: '2 pcs',
+    leadTime: '≤ 7 days (≤ 2 pcs) · ≤ 15 days (≤ 10 pcs)',
     pkg: '35 × 26 × 11 cm · 4.0 kg',
   },
   {
@@ -1439,6 +1495,8 @@ const products = [
       '100% tested before shipment'
     ],
     soldAs: 'piece',
+    moq: '500 pcs',
+    leadTime: '45 days',
     pkg: '41 × 30 × 12 cm · 5.5 kg',
   },
   {
@@ -1484,15 +1542,41 @@ const products = [
       'OEM/ODM customization available'
     ],
     soldAs: 'piece',
+    moq: '2 pcs',
+    leadTime: '≤ 7 days (≤ 2 pcs) · ≤ 15 days (≤ 10 pcs)',
     pkg: '53 × 35 × 43 cm · 13.0 kg',
   }
 ];
 
 let currentFilter = 'all';
+let currentSearch = '';
+
+function doSearch() {
+  const el = document.getElementById('search-input');
+  currentSearch = el.value.trim().toLowerCase();
+  document.getElementById('search-clear').style.display = currentSearch ? 'block' : 'none';
+  renderCatalog(currentFilter);
+}
+
+function clearSearch() {
+  document.getElementById('search-input').value = '';
+  currentSearch = '';
+  document.getElementById('search-clear').style.display = 'none';
+  renderCatalog(currentFilter);
+}
 
 function renderCatalog(filter) {
   const grid = document.getElementById('catalog-grid');
-  const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+  let filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+  if (currentSearch) {
+    const q = currentSearch;
+    filtered = filtered.filter(p =>
+      p.model.toLowerCase().includes(q) ||
+      p.desc.toLowerCase().includes(q) ||
+      p.categoryLabel.toLowerCase().includes(q) ||
+      p.id.toLowerCase().includes(q)
+    );
+  }
   grid.innerHTML = filtered.map(p => `
     <div class="product-card" onclick="showDetail('${p.id}')" data-cat="${p.category}">
       ${p.badge ? `<div class="card-badge">${p.badge}</div>` : ''}
@@ -1565,7 +1649,7 @@ function showDetail(id) {
     <div class="pricing-block">
       <h3>Pricing — FOB Guangzhou</h3>
       <div class="price-tiers">${pricingRows}</div>
-      <div class="price-note">MOQ: 2 pcs · CE / RoHS Certified · OEM/ODM Available</div>
+      <div class="price-note">MOQ: ${p.moq} · CE / RoHS Certified · OEM/ODM Available</div>
     </div>
 
     <div class="specs-section">
@@ -1584,7 +1668,8 @@ function showDetail(id) {
         <div class="term-cell"><div class="term-label">Unit Size</div><div class="term-val">${p.pkg.split('·')[0].trim()}</div></div>
         <div class="term-cell"><div class="term-label">Gross Weight</div><div class="term-val">${p.pkg.split('·')[1].trim()}</div></div>
         <div class="term-cell"><div class="term-label">Sold As</div><div class="term-val">${p.soldAs === 'pair' ? '1 Pair (2 pcs)' : '1 pc'}</div></div>
-        <div class="term-cell"><div class="term-label">Lead Time</div><div class="term-val">≤ 7 days (small) · ≤ 15 days (bulk)</div></div>
+        <div class="term-cell"><div class="term-label">MOQ</div><div class="term-val">${p.moq}</div></div>
+        <div class="term-cell"><div class="term-label">Lead Time</div><div class="term-val">${p.leadTime}</div></div>
       </div>
     </div>
 
